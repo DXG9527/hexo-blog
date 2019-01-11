@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>tomcat的web.xml以及spring-boot注解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近做文件上传遇到了一点问题，spring-boot框架，之前已经测试通过的文件上传突然后报错了，报上传文件为空的错误。后台发现是因为tomcat的配置中加了web.xml，里面新添加了一些关于过滤的配置。去掉这个web.xml文件，上传又恢复正常。这是因为没有这个文件的时候tomcat会采用spring默认的配置，一旦加入了这个文件，tomcat会采用这个文件中的配置，一些用到的配置都必须要手动">
+<meta name="keywords" content="tomcat,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tomcat的web.xml以及spring-boot注解">
+<meta property="og:url" content="http://yoursite.com/hexo-blog/2019/01/03/tomcat的web-xml以及spring-boot注解/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近做文件上传遇到了一点问题，spring-boot框架，之前已经测试通过的文件上传突然后报错了，报上传文件为空的错误。后台发现是因为tomcat的配置中加了web.xml，里面新添加了一些关于过滤的配置。去掉这个web.xml文件，上传又恢复正常。这是因为没有这个文件的时候tomcat会采用spring默认的配置，一旦加入了这个文件，tomcat会采用这个文件中的配置，一些用到的配置都必须要手动">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-03T03:51:55.685Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tomcat的web.xml以及spring-boot注解">
+<meta name="twitter:description" content="最近做文件上传遇到了一点问题，spring-boot框架，之前已经测试通过的文件上传突然后报错了，报上传文件为空的错误。后台发现是因为tomcat的配置中加了web.xml，里面新添加了一些关于过滤的配置。去掉这个web.xml文件，上传又恢复正常。这是因为没有这个文件的时候tomcat会采用spring默认的配置，一旦加入了这个文件，tomcat会采用这个文件中的配置，一些用到的配置都必须要手动">
+  
+    <link rel="alternate" href="/hexo-blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/hexo-blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexo-blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexo-blog/">Home</a>
+        
+          <a class="main-nav-link" href="/hexo-blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/hexo-blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com/hexo-blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tomcat的web-xml以及spring-boot注解" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexo-blog/2019/01/03/tomcat的web-xml以及spring-boot注解/" class="article-date">
+  <time datetime="2019-01-03T03:49:14.000Z" itemprop="datePublished">2019-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/hexo-blog/categories/JAVA/">JAVA</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      tomcat的web.xml以及spring-boot注解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近做文件上传遇到了一点问题，spring-boot框架，之前已经测试通过的文件上传突然后报错了，报上传文件为空的错误。<br>后台发现是因为tomcat的配置中加了web.xml，里面新添加了一些关于过滤的配置。去掉这个web.xml文件，上传又恢复正常。这是因为没有这个文件的时候tomcat会采用spring默认的配置，一旦加入了这个文件，tomcat会采用这个文件中的配置，一些用到的配置都必须要手动添加进来。<br>这一点有点像@EnableMVC注解的使用，加入了注解以后mvc的配置都会被重置，例如静态文件的访问配置都需要手动添加。<br>想要使用默认配置，无需使用 @EnaleWebMvc 注解。使用了 @EnableWebMvc 注解后 WebMvcAutoConfiguration 提供的默认配置会失效，必须提供全部配置。</p>
+<p>回到文件上传的部分，在servlet 3的情况下，web.xml加入multipart-config的配置即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatchServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param-value</span>&gt;</span>WEB-INF/config/dispatch-servlet.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 限制上传文件大小，单个 &lt; 2M ;最多支持 10个文件(20M)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">multipart-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">max-file-size</span>&gt;</span>2097152<span class="tag">&lt;/<span class="name">max-file-size</span>&gt;</span> <span class="comment">&lt;!-- 2*1024*1024 = 2097152 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">max-request-size</span>&gt;</span>20971520<span class="tag">&lt;/<span class="name">max-request-size</span>&gt;</span> <span class="comment">&lt;!-- 10*2*1024*1024 = 20971520 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">file-size-threshold</span>&gt;</span>0<span class="tag">&lt;/<span class="name">file-size-threshold</span>&gt;</span> <span class="comment">&lt;!--必填--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">multipart-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>只有servlet 3 才支持 multipart-config 配置</p>
+<p>参考：<a href="https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html#mvc-multipart" target="_blank" rel="noopener"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/hexo-blog/2019/01/03/tomcat的web-xml以及spring-boot注解/" data-id="cjqrv216g000m4ovamdmfykxm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-blog/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-blog/tags/tomcat/">tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/hexo-blog/2019/01/11/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/hexo-blog/2019/01/03/git-rollback/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git rollback</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexo-blog/categories/JAVA/">JAVA</a></li><li class="category-list-item"><a class="category-list-link" href="/hexo-blog/categories/其它/">其它</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/cmd/">cmd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/ftp/">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/jpa/">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/tomcat/">tomcat</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/hexo-blog/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/hexo-blog/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/hexo-blog/tags/git/" style="font-size: 10px;">git</a> <a href="/hexo-blog/tags/java/" style="font-size: 10px;">java</a> <a href="/hexo-blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/hexo-blog/tags/tomcat/" style="font-size: 20px;">tomcat</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexo-blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/hexo-blog/archives/2018/12/">December 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/03/tomcat的web-xml以及spring-boot注解/">tomcat的web.xml以及spring-boot注解</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/03/git-rollback/">git rollback</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/03/tomcat-url特殊字符的转义问题/">tomcat url特殊字符的转义问题</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/02/FTP-Client-踩过的坑/">FTP Client 踩过的坑</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexo-blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexo-blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/hexo-blog/fancybox/jquery.fancybox.css">
+  <script src="/hexo-blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

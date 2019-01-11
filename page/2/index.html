@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/hexo-blog/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/hexo-blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/hexo-blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/hexo-blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/hexo-blog/">Home</a>
+        
+          <a class="main-nav-link" href="/hexo-blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/hexo-blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com/hexo-blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-对final修饰的变量赋值" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexo-blog/2018/12/27/对final修饰的变量赋值/" class="article-date">
+  <time datetime="2018-12-27T09:27:34.000Z" itemprop="datePublished">2018-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexo-blog/2018/12/27/对final修饰的变量赋值/">对final修饰的变量赋值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>If you want to do any operation on your final variable passed to your method then use any collection api like List.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void experiment(final List&lt;TimeTraveler&gt; timeTraveler) &#123;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>Now, you can modify the value inside your list.</p>
+<p>如果想对final修饰的变量赋值，将该变量放到list里面，用final修饰list就可以了</p>
+<p>map也可以</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/hexo-blog/2018/12/27/对final修饰的变量赋值/" data-id="cjqrv216h000o4ovasiij34rm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-当一个查询语句同时出现了where-group-by-having-order-by的时候，执行顺序和编写顺序" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexo-blog/2018/12/27/当一个查询语句同时出现了where-group-by-having-order-by的时候，执行顺序和编写顺序/" class="article-date">
+  <time datetime="2018-12-27T09:25:56.000Z" itemprop="datePublished">2018-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexo-blog/2018/12/27/当一个查询语句同时出现了where-group-by-having-order-by的时候，执行顺序和编写顺序/">当一个查询语句同时出现了where,group by,having,order by的时候，执行顺序和编写顺序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.执行where xx对全表数据做筛选，返回第1个结果集。<br>2.针对第1个结果集使用group by分组，返回第2个结果集。<br>3.针对第2个结果集中的每1组数据执行select xx，有几组就执行几次，返回第3个结果集。<br>4.针对第3个结集执行having xx进行筛选，返回第4个结果集。<br>5.针对第4个结果集排序。</p>
+<p><a href="http://blog.csdn.net/superhosts/article/details/39298529" target="_blank" rel="noopener"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/hexo-blog/2018/12/27/当一个查询语句同时出现了where-group-by-having-order-by的时候，执行顺序和编写顺序/" data-id="cjqrv216l000r4ova3kt6zjg1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-three-JS-the-diffrences-between-bufferGeometry-and-Geometry" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexo-blog/2018/12/24/three-JS-the-diffrences-between-bufferGeometry-and-Geometry/" class="article-date">
+  <time datetime="2018-12-24T10:02:57.000Z" itemprop="datePublished">2018-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexo-blog/2018/12/24/three-JS-the-diffrences-between-bufferGeometry-and-Geometry/">three JS the diffrences between bufferGeometry and Geometry</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://wwwtyro.github.io/tests/geometry-vs-buffer-geometry/" target="_blank" rel="noopener"></a></p>
+<p><img src="../images/threeJs/geometry1.jpg" alt=""><br><img src="../images/threeJs/geometry2.jpg" alt=""></p>
+<p><a href="https://www.cnblogs.com/yiyezhai/archive/2013/02/22/2863513.html" target="_blank" rel="noopener"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/hexo-blog/2018/12/24/three-JS-the-diffrences-between-bufferGeometry-and-Geometry/" data-id="cjqrv2168000e4ovader6w2ex" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java-头构造函数的参数a¸类型a¸实体类的情况" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hexo-blog/2018/12/24/Java-头构造函数的参数a¸类型a¸实体类的情况/" class="article-date">
+  <time datetime="2018-12-24T09:41:28.000Z" itemprop="datePublished">2018-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hexo-blog/2018/12/24/Java-头构造函数的参数a¸类型a¸实体类的情况/">Java 构造函数的参数类型为实体类的情况</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当构造体的字段关联了其它的实体类，这个参数就要放在最后面，不然无法解析出它后面的参数，会报空指针的错误。</p>
+<p>如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public DmpNodePosition(<span class="built_in">float</span> positionZ, DmpNodeInfo dmpNodeInfo) &#123;</span><br><span class="line">    this.dmpNodeInfo = new DmpNodeInfo(dmpNodeInfo.getId());</span><br><span class="line">    this.positionZ = positionZ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>dmpNodeInfo应该放在最后一个参数的位置上。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/hexo-blog/2018/12/24/Java-头构造函数的参数a¸类型a¸实体类的情况/" data-id="cjqrv215w00044ovap5li13o5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/hexo-blog/">&laquo; Prev</a><a class="page-number" href="/hexo-blog/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexo-blog/categories/JAVA/">JAVA</a></li><li class="category-list-item"><a class="category-list-link" href="/hexo-blog/categories/其它/">其它</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/cmd/">cmd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/ftp/">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/jpa/">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexo-blog/tags/tomcat/">tomcat</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/hexo-blog/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/hexo-blog/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/hexo-blog/tags/git/" style="font-size: 10px;">git</a> <a href="/hexo-blog/tags/java/" style="font-size: 10px;">java</a> <a href="/hexo-blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/hexo-blog/tags/tomcat/" style="font-size: 20px;">tomcat</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexo-blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/hexo-blog/archives/2018/12/">December 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/03/tomcat的web-xml以及spring-boot注解/">tomcat的web.xml以及spring-boot注解</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/03/git-rollback/">git rollback</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/03/tomcat-url特殊字符的转义问题/">tomcat url特殊字符的转义问题</a>
+          </li>
+        
+          <li>
+            <a href="/hexo-blog/2019/01/02/FTP-Client-踩过的坑/">FTP Client 踩过的坑</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/hexo-blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexo-blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/hexo-blog/fancybox/jquery.fancybox.css">
+  <script src="/hexo-blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
