@@ -80,4 +80,4 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/DXG9527/hexo-blog.git
-  branch: publish
+  branch: master
