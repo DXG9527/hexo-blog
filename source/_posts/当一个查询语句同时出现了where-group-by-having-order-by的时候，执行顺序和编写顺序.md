@@ -1,7 +1,8 @@
 ---
 title: '当一个查询语句同时出现了where,group by,having,order by的时候，执行顺序和编写顺序'
 date: 2018-12-27 17:25:56
-tags:
+tags: sql
+categories: DB
 ---
 1.执行where xx对全表数据做筛选，返回第1个结果集。
 2.针对第1个结果集使用group by分组，返回第2个结果集。

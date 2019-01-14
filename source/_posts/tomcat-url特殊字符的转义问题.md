@@ -10,9 +10,11 @@ get请求，url中带[]的话，tomcat的8.5以上的版本都不会自动转义
 
 可以通过修改tomcat的配置让url中可以使用[]
 
-![](../images/tomcat/tomcatDoc1.png)
-![](../images/tomcat/tomcatDoc2.png)
-![](../images/tomcat/tomcatDoc3.png)
+{% asset_img tomcatDoc1.jpg %}
+
+{% asset_img tomcatDoc2.jpg %}
+
+{% asset_img tomcatDoc3.jpg %}
 
 可参考tomcat的源码
 

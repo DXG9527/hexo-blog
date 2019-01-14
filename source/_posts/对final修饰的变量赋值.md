@@ -1,7 +1,8 @@
 ---
 title: 对final修饰的变量赋值
 date: 2018-12-27 17:27:34
-tags:
+tags: java
+categories: JAVA
 ---
 If you want to do any operation on your final variable passed to your method then use any collection api like List.
 

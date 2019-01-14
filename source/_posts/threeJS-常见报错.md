@@ -1,7 +1,8 @@
 ---
 title: threeJS 常见报错
 date: 2018-12-27 17:36:54
-tags:
+tags: threeJS
+categories: JS
 ---
 THREE.Matrix3.getInverse(): can't invert matrix, determinant is 0
 可能错误原因
