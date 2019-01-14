@@ -5,20 +5,20 @@
   
 
   
-  <title>FTP Client 踩过的坑 | Hexo</title>
+  <title>three JS the diffrences between bufferGeometry and Geometry | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目录FTPClient的路径跳转之后，之后所做的操作都是在当前目录下，若要在其它目录下操作需要跳转到相应目录获取当前目录：1client.printWorkingDirectory() 目录跳转:1client.changeWorkingDirectory(path) 文件删除和File处理不同，FTPClient目录删除和文件删除的命令不一样删除目录:1client.removeDirector">
-<meta name="keywords" content="ftp">
+  <meta name="keywords" content="threeJS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FTP Client 踩过的坑">
-<meta property="og:url" content="http://yoursite.com/hexo-blog/2019/01/02/FTP-Client-踩过的坑/index.html">
+<meta property="og:title" content="three JS the diffrences between bufferGeometry and Geometry">
+<meta property="og:url" content="http://yoursite.com/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="目录FTPClient的路径跳转之后，之后所做的操作都是在当前目录下，若要在其它目录下操作需要跳转到相应目录获取当前目录：1client.printWorkingDirectory() 目录跳转:1client.changeWorkingDirectory(path) 文件删除和File处理不同，FTPClient目录删除和文件删除的命令不一样删除目录:1client.removeDirector">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-03T03:57:34.861Z">
+<meta property="og:image" content="http://yoursite.com/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/geometry1.jpg">
+<meta property="og:image" content="http://yoursite.com/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/geometry2.jpg">
+<meta property="og:updated_time" content="2019-01-14T08:29:53.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FTP Client 踩过的坑">
-<meta name="twitter:description" content="目录FTPClient的路径跳转之后，之后所做的操作都是在当前目录下，若要在其它目录下操作需要跳转到相应目录获取当前目录：1client.printWorkingDirectory() 目录跳转:1client.changeWorkingDirectory(path) 文件删除和File处理不同，FTPClient目录删除和文件删除的命令不一样删除目录:1client.removeDirector">
+<meta name="twitter:title" content="three JS the diffrences between bufferGeometry and Geometry">
+<meta name="twitter:image" content="http://yoursite.com/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/geometry1.jpg">
   
     <link rel="alternate" href="/hexo-blog/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -65,14 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-FTP-Client-踩过的坑" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-bufferGeometry-and-Geometry" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/hexo-blog/2019/01/02/FTP-Client-踩过的坑/" class="article-date">
-  <time datetime="2019-01-02T10:03:29.000Z" itemprop="datePublished">2019-01-02</time>
+    <a href="/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/" class="article-date">
+  <time datetime="2018-12-24T10:02:57.000Z" itemprop="datePublished">2018-12-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/hexo-blog/categories/JAVA/">JAVA</a>
+    <a class="article-category-link" href="/hexo-blog/categories/JS/">JS</a>
   </div>
 
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      FTP Client 踩过的坑
+      three JS the diffrences between bufferGeometry and Geometry
     </h1>
   
 
@@ -91,23 +91,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><p>FTPClient的路径跳转之后，之后所做的操作都是在当前目录下，若要在其它目录下操作需要跳转到相应目录<br>获取当前目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.printWorkingDirectory()</span><br></pre></td></tr></table></figure></p>
-<p>目录跳转:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.changeWorkingDirectory(path)</span><br></pre></td></tr></table></figure></p>
-<h4 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h4><p>和File处理不同，FTPClient目录删除和文件删除的命令不一样<br>删除目录:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.removeDirectory(filePath)</span><br></pre></td></tr></table></figure></p>
-<p>删除文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.deleteFile(filePath)</span><br></pre></td></tr></table></figure></p>
-<h4 id="文件流操作"><a href="#文件流操作" class="headerlink" title="文件流操作"></a>文件流操作</h4><p>FTPClient 返回值为InputStream或者OutputStream时必须通过调用completePendingCommand()需要流，例如retrieveFileStream()和storeFileStream()方法，完成后必须调用completePendingCommand()，并且验证是否返回success。<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (!client.completePendingCommand()) &#123;</span><br><span class="line">    this.destroy();</span><br><span class="line">    this.afterPropertiesSet();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意：completePendingCommand()这个方法不能连续调用两次，不然程序会卡住，只有再次进行了文件流的操作的时候才需要调用</p>
-<p>官方文档：<a href="https://commons.apache.org/proper/commons-net/javadocs/api-3.6/index.html" target="_blank" rel="noopener"></a></p>
-<p>FTPClient 的参数为InputStream或者OutputStream时，执行完操作后也要注意将流关闭，因为FTPClient的方法一般不会关闭这些流。</p>
-<h4 id="模式设置"><a href="#模式设置" class="headerlink" title="模式设置"></a>模式设置</h4><p>有的环境下文件获取以及上传都需要设置<br>ftpClient.listFiles()返回null, 或者返回421错误，都有可能是因为没有设置enterLocalPassiveMode模式。<br>我在Windows以及Linux环境下测试这些方法都没有问题，把服务放到docker上以后就报了上述问题，研究后发现是需要设置enterLocalPassiveMode这个模式，可能是docker环境导致端口号不稳定的原因。<br>参考：<a href="https://www.cnblogs.com/wqsbk/p/6526005.html" target="_blank" rel="noopener"></a></p>
+        <p><a href="https://wwwtyro.github.io/tests/geometry-vs-buffer-geometry/" target="_blank" rel="noopener"></a></p>
+<img src="/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/geometry1.jpg">
+<img src="/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/geometry2.jpg">
+<p><a href="https://www.cnblogs.com/yiyezhai/archive/2013/02/22/2863513.html" target="_blank" rel="noopener"></a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/hexo-blog/2019/01/02/FTP-Client-踩过的坑/" data-id="cjqw2axy600001cva3c8scx2w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/hexo-blog/2018/12/24/bufferGeometry-and-Geometry/" data-id="cjqw2axyg00041cvacy8q6yqn" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-blog/tags/ftp/">ftp</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-blog/tags/threeJS/">threeJS</a></li></ul>
 
     </footer>
   </div>
@@ -115,19 +110,19 @@
     
 <nav id="article-nav">
   
-    <a href="/hexo-blog/2019/01/03/tomcat-url特殊字符的转义问题/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/hexo-blog/2018/12/27/当一个查询语句同时出现了where-group-by-having-order-by的时候，执行顺序和编写顺序/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          tomcat url特殊字符的转义问题
+          当一个查询语句同时出现了where,group by,having,order by的时候，执行顺序和编写顺序
         
       </div>
     </a>
   
   
-    <a href="/hexo-blog/2019/01/02/JPA-update-teae-insert语句/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/hexo-blog/2018/12/24/Java-头构造函数的参数a¸类型a¸实体类的情况/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JPA update,insert语句</div>
+      <div class="article-nav-title">Java 构造函数的参数类型为实体类的情况</div>
     </a>
   
 </nav>
